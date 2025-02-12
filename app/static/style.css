@@ -1,0 +1,45 @@
+/* 
+#09122C
+#444655
+#615336
+#32270a
+*/
+*{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color: #09122C;
+    color: white;
+    margin: 0;
+}
+
+main{
+    width: 80%;
+    margin: auto;
+    background-color: #444655;
+    padding: 15px;
+}
+
+nav{
+    background-color: #615336;
+}
+nav ul{
+    display: flex;
+    width: 100%;
+}
+nav li{
+    display: block;
+    
+}
+nav a{
+    display: block;
+    padding: 10px 30px;
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+}
+nav a:hover{
+    background-color: #32270a;
+}

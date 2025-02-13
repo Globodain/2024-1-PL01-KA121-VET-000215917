@@ -32,3 +32,13 @@ class EditProfileForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     about_me = TextAreaField('About me', validators=[length(min=0,max=140)])
     submit = SubmitField('Submit')
+
+    def __init__(self, orginal_username, *args, **kwargs):
+        super().__init__(*args,**kwargs)
+        self.orginal_username = orginal_username
+
+    def validate_username(self, username):
+        if username.data != self.orginal_username:
+            user = db.session.scalar(sa.selecr(User).where(User.username == username.data))
+            if user is not None:
+                raise ValidationError('Please use a different username.')

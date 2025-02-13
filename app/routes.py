@@ -4,8 +4,11 @@ from app import app, db
 from app.models import User, Post
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm
 from flask_login import current_user, login_user, logout_user, login_required
-import sqlalchemy as sa
 from datetime import datetime, timezone
+
+import sqlalchemy as sa
+
+
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -30,7 +33,6 @@ def index():
         if posts.has_prev else None
    
     return render_template('index.html', title='Home Page', posts=posts.items, form=form, next_url=next_url, prev_url=prev_url)
-
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -70,7 +72,7 @@ def login():
         if not next_page or urlsplit(next_page).netloc != '':
             next_page = url_for('index')
         return redirect(next_page)
-    
+
     return render_template('login.html', title='Sign In', form=form)
 
 @app.route("/logout")
@@ -162,7 +164,6 @@ def unfollow(username):
         return redirect(url_for('user', username=username))
     else:
         return redirect(url_for('index'))
-    
     
 @app.route('/explore')
 @login_required

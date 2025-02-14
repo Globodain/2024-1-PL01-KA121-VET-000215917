@@ -6,9 +6,7 @@ from app.email import send_password_reset_mail
 from app.forms import ResetPasswordForm, LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm, ResetPasswordRequestForm
 from flask_login import current_user, login_user, logout_user, login_required
 from datetime import datetime, timezone
-
 import sqlalchemy as sa
-
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -35,6 +33,7 @@ def index():
    
     return render_template('index.html', title='Home Page', posts=posts.items, form=form, next_url=next_url, prev_url=prev_url)
 
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -51,6 +50,7 @@ def register():
         return redirect(url_for('login'))
     
     return render_template('register.html', title='Register', form=form)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -76,6 +76,7 @@ def login():
 
     return render_template('login.html', title='Sign In', form=form)
 
+
 @app.route("/logout")
 def logout():
     logout_user()
@@ -97,11 +98,13 @@ def user(username):
     
     return render_template('user.html', user=user, posts=posts.items,  next_url=next_url, prev_url=prev_url, form=form)
 
+
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.now(timezone.utc)
         db.session.commit()
+
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
@@ -115,11 +118,13 @@ def edit_profile():
 
         flash("Your changes have been saved.")
         return redirect(url_for('edit_profile'))
+    
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
 
     return render_template('edit_profile.html', title='Edit Profile', form=form)
+
 
 @app.route('/follow/<username>', methods=['POST'])
 @login_required
@@ -146,6 +151,7 @@ def follow(username):
     else:
         return redirect(url_for('index'))
 
+
 @app.route('/unfollow/<username>', methods=['POST'])
 @login_required
 def unfollow(username):
@@ -166,6 +172,7 @@ def unfollow(username):
     else:
         return redirect(url_for('index'))
     
+
 @app.route('/explore')
 @login_required
 def explore():
@@ -178,6 +185,7 @@ def explore():
     prev_url = url_for('explore', page=posts.prev_num) \
         if posts.has_prev else None
     return render_template("index.html", title='Explore', posts=posts.items, next_url=next_url, prev_url=prev_url)
+
 
 @app.route('/reset_password_request', methods=['GET','POST'])
 def reset_password_request():
@@ -195,6 +203,7 @@ def reset_password_request():
         flash('Check your email for instructions to reset your password.')
         return redirect(url_for('login'))
     return render_template('reset_password_request.html', title='Reset Password', form=form)
+
 
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):

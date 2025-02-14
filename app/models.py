@@ -5,12 +5,9 @@ from app import db, login, app
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash,  check_password_hash
 from time import time
-
-
 import sqlalchemy as sa
 import sqlalchemy.orm as so
 import jwt
-
 
 
 followers = sa.Table(
@@ -19,6 +16,7 @@ followers = sa.Table(
     sa.Column('follower_id', sa.Integer, sa.ForeignKey('user.id'), primary_key=True),
     sa.Column('followed_id', sa.Integer, sa.ForeignKey('user.id'), primary_key=True)
 )
+
 
 class User(UserMixin, db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
@@ -99,6 +97,8 @@ class User(UserMixin, db.Model):
         except:
             return
         return db.session.get(User, id)
+    
+
 class Post(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
     body: so.Mapped[int] = so.mapped_column(sa.String(140))
@@ -109,6 +109,7 @@ class Post(db.Model):
     def __repr__(self):
         return '<Post {}>'.format(self.body)
     
+
 @login.user_loader
 def load_user(id):
     return db.session.get(User, int(id))

@@ -5,10 +5,8 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from logging.handlers import SMTPHandler, RotatingFileHandler
 from flask_mail import Mail
-
 import logging 
 import os
-
 
 
 app = Flask(__name__)
@@ -18,6 +16,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
+
 
 if not app.debug:
   if app.config['MAIL_SERVER']:
@@ -50,5 +49,6 @@ if not app.debug:
   app.logger.addHandler(file_handler)
   app.logger.setLevel(logging.INFO)
   app.logger.info('Microblog startup')
+
 
 from app import routes, models, errors

@@ -41,42 +41,32 @@ class User(UserMixin, db.Model):
         secondary=followers, primaryjoin=(followers.c.followed_id == id),
         secondaryjoin=(followers.c.follower_id == id),
         back_populates='following')
-
     def __repr__(self):
         return '<User {}>'.format(self.username)
-
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
-
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
-
     def avatar(self, size):
         digest = md5(self.email.lower().encode('utf-8')).hexdigest()
         return f'https://www.gravatar.com/avatar/{digest}?d=identicon&s={size}'
-
     def follow(self, user):
         if not self.is_following(user):
             self.following.add(user)
-
     def unfollow(self, user):
         if self.is_following(user):
             self.following.remove(user)
-
     def is_following(self, user):
         query = self.following.select().where(User.id == user.id)
         return db.session.scalar(query) is not None
-
     def followers_count(self):
         query = sa.select(sa.func.count()).select_from(
             self.followers.select().subquery())
         return db.session.scalar(query)
-
     def following_count(self):
         query = sa.select(sa.func.count()).select_from(
             self.following.select().subquery())
         return db.session.scalar(query)
-
     def following_posts(self):
         Author = so.aliased(User)
         Follower = so.aliased(User)
@@ -91,12 +81,10 @@ class User(UserMixin, db.Model):
             .group_by(Post)
             .order_by(Post.timestamp.desc())
         )
-
     def get_reset_password_token(self, expires_in=600):
         return jwt.encode(
             {'reset_password': self.id, 'exp': time() + expires_in},
             app.config['SECRET_KEY'], algorithm='HS256')
-
     @staticmethod
     def verify_reset_password_token(token):
         try:
@@ -105,12 +93,9 @@ class User(UserMixin, db.Model):
         except Exception:
             return
         return db.session.get(User, id)
-
-
 @login.user_loader
 def load_user(id):
     return db.session.get(User, int(id))
-
 
 class Post(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
@@ -121,6 +106,6 @@ class Post(db.Model):
                                                index=True)
 
     author: so.Mapped[User] = so.relationship(back_populates='posts')
-
+    
     def __repr__(self):
         return '<Post {}>'.format(self.body)

@@ -7,6 +7,9 @@ import logging
 from logging.handlers import SMTPHandler
 from logging.handlers import RotatingFileHandler
 import os
+from flask_mail import Mail
+
+app = Flask(__name__)
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -41,3 +44,5 @@ if not app.debug:
             app.logger.info('Microblog startup')
             
 from app import routes, models, errors
+
+mail = Mail(app)

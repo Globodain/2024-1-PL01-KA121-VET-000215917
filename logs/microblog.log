@@ -1,0 +1,41 @@
+2025-02-14 11:31:00,698 ERROR: Exception on /user/bmalecc [GET] [in C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\flask\app.py:1414]
+Traceback (most recent call last):
+  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Student2\Desktop\microblog\app\routes.py", line 45, in user
+    return render_template('user.html', user=user, posts=posts.items,
+                           next_url=next_url, prev_url=prev_url, form=form)
+  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\flask\templating.py", line 151, in render_template
+    return _render(app, template, context)
+  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\flask\templating.py", line 132, in _render
+    rv = template.render(context)
+  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\Student2\Desktop\microblog\app\templates\user.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\Student2\Desktop\microblog\app\templates\base.html", line 32, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Student2\Desktop\microblog\app\templates\user.html", line 15, in block 'content'
+    <p>{{ user.followers_count() }} followers, {{ user.following_count() }} following.</p>
+    ^^^^^^^^^
+  File "C:\Users\Student2\Desktop\microblog\app\models.py", line 69, in followers_count
+    return len(self.followers)
+TypeError: object of type 'WriteOnlyCollection' has no len()
+2025-02-14 11:31:57,918 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:46]
+2025-02-14 11:34:49,874 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:46]
+2025-02-14 11:42:48,680 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:46]
+2025-02-14 11:48:26,659 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:45]

@@ -13,6 +13,7 @@ app = Flask(__name__)
 
 app = Flask(__name__)
 app.config.from_object(Config)
+mail =  Mail(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
 login = LoginManager(app)
@@ -42,7 +43,8 @@ if not app.debug:
 
             app.logger.setLevel(logging.INFO)
             app.logger.info('Microblog startup')
+
+            mail = Mail(app)
             
 from app import routes, models, errors
 
-mail = Mail(app)

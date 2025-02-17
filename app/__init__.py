@@ -10,10 +10,13 @@ from flask_mail import Mail
 from config import Config
 from flask_moment import Moment
 from flask_babel import Babel
+from app.api import bp as api_bp
 
 def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
-
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.register_blueprint(api_bp, url_prefix='/api')
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)

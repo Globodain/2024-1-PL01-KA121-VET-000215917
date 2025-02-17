@@ -43,3 +43,8 @@ TypeError: object of type 'WriteOnlyCollection' has no len()
 2025-02-14 12:14:12,307 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:44]
 2025-02-14 12:40:44,211 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:52]
 2025-02-14 12:42:45,948 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:52]
+2025-02-17 10:54:04,126 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:56]
+2025-02-17 10:54:11,826 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:56]
+2025-02-17 10:55:07,968 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:56]
+2025-02-17 10:55:33,268 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:56]
+2025-02-17 11:37:56,777 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:56]

@@ -47,7 +47,7 @@ class PaginatedAPIMixin(object):
 
 class User(PaginatedAPIMixin, UserMixin, db.Model):
     token: so.Mapped[Optional[str]] = so.mapped_column(sa.String(32), index=True, unique=True)
-    token_exporation: so.Mapped[Optional[datetime]]
+    token_expiration: so.Mapped[Optional[datetime]]
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
     username: so.Mapped[str] = so.mapped_column(sa.String(64), index=True, unique=True)
     email: so.Mapped[str] = so.mapped_column(sa.String(120), index=True, unique=True)
@@ -68,7 +68,7 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
     
     def get_token(self, expires_in=3600):
         now = datetime.now(timezone.utc)
-        if self.token and self.token_expiration.replace(tzinfo=timezone.utc) > now + timedelta(seconds=60):
+        if self.token and self.token_expiration and self.token_expiration.replace(tzinfo=timezone.utc) > now + timedelta(seconds=60):
             return self.token
         self.token = secrets.token_hex(16)
         self.token_expiration = now + timedelta(seconds=expires_in)
@@ -167,8 +167,7 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
     @staticmethod
     def check_token(token):
         user = db.session.scalar(sa.select(User).where(User.token == token))
-        if user is None or user.token_expiration.replace(
-                tzinfo=timezone.utc) < datetime.now(timezone.utc):
+        if user is None or user.token_expiration.replace(tzinfo=timezone.utc) < datetime.now(timezone.utc):
             return None
         return user
     

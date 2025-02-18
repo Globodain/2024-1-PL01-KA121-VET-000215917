@@ -9,6 +9,7 @@ router = APIRouter()
 def get_cars():
     cars = cars_collection.find()
     cars = [car for car in cars]
+
     return cars
 
 
@@ -29,3 +30,4 @@ def create_car(car: Car):
     
     cars_collection.insert_one(car.model_dump(by_alias=True))
     raise HTTPException(status_code=201, detail="Car created")
+

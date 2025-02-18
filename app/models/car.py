@@ -9,7 +9,7 @@ PydanticObjectId = Annotated[
 ]
 
 class Car(BaseModel):
-    id:  PydanticObjectId = Field(default_factory=PydanticObjectId, alias="_id")
+    id:  PydanticObjectId = Field(default_factory=PydanticObjectId, alias="_id", )
     brand: str = Field(..., min_length=1)
     model: str = Field(..., min_length=1)
     year: int = Field(..., ge=1900)

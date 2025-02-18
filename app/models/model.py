@@ -1,6 +1,5 @@
 from bson.objectid import ObjectId
 from typing import Annotated, Any, Callable
-
 from bson import ObjectId
 from fastapi import FastAPI
 from pydantic import BaseModel, ConfigDict, Field, GetJsonSchemaHandler

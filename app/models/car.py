@@ -3,10 +3,10 @@ from bson.objectid import ObjectId
 from typing import Annotated
 from models.model import _ObjectIdPydanticAnnotation
 
+
 PydanticObjectId = Annotated[
     ObjectId, _ObjectIdPydanticAnnotation
 ]
-
 
 class Car(BaseModel):
     id:  PydanticObjectId = Field(default_factory=PydanticObjectId, alias="_id")

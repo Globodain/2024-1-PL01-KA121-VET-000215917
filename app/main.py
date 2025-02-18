@@ -8,6 +8,6 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"Hello World"}
+    return {"Welcome in the Car API"}
 
 app.include_router(cars_router)

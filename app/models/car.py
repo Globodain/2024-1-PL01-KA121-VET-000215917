@@ -1,9 +1,17 @@
 from pydantic import BaseModel, Field
+from bson.objectid import ObjectId
+from typing import Annotated
+from models.model import _ObjectIdPydanticAnnotation
+
+PydanticObjectId = Annotated[
+    ObjectId, _ObjectIdPydanticAnnotation
+]
 
 
 class Car(BaseModel):
-    brand: str
-    model: str
+    id:  PydanticObjectId = Field(default_factory=PydanticObjectId, alias="_id")
+    brand: str = Field(..., min_length=1)
+    model: str = Field(..., min_length=1)
     year: int = Field(..., ge=1900)
     milage: int = Field(..., ge=0)
     avg_price: int = Field(..., ge=0)
@@ -28,3 +36,8 @@ class Car(BaseModel):
     range_city: float = Field(..., ge=0)
     range_highway: float = Field(..., ge=0)
     range_combined: float = Field(..., ge=0)
+    
+    class Config:
+        allow_population_by_field_name = True
+        arbitrary_types_allowed = True
+        json_encoders = {ObjectId: str}

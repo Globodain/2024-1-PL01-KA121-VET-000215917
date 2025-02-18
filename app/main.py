@@ -1,10 +1,8 @@
-from typing import Union
 from fastapi import FastAPI
-from pydantic import BaseModel
 from routes.cars import router as cars_router
 
 
-app = FastAPI()
+app = FastAPI(title="Car API")
 
 @app.get("/")
 def read_root():

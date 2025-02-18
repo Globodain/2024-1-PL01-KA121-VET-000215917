@@ -1,16 +1,14 @@
 from typing import Union
 from fastapi import FastAPI
-import pymongo
-
-client = pymongo.MongoClient("mongodb://localhost:27017/")
-db = client["cars"]
-col = db["cars"]
+from pydantic import BaseModel
+from db import cars_collection
 
 app = FastAPI()
 
 
 @app.get("/")
 def read_root():
+    print(cars_collection.name)
     return {"Hello": "World"}
 
 

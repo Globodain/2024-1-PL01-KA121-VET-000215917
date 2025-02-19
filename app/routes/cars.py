@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from db import cars_collection
 from fastapi import APIRouter, HTTPException
 from models.car import Car
@@ -5,8 +7,21 @@ from models.car import Car
 router = APIRouter()
 
 @router.get("/search", response_model=list[Car])
-def search_cars(brand: str = None, model: str = None, year: int = None, milage: int = None, price: int = None):
+def search_cars(
+    brand: str = None,
+    model: str = None,
+    year: int = None,
+    milage: int = None,
+    price: int = None, 
+    year_from: int = None, 
+    year_to: int = None, 
+    milage_from: int = None,
+    milage_to: int = None, 
+    price_from: int = None, 
+    price_to: int = None):
+
     query = {}
+
     if brand:
         query["brand"] = brand
     if model:
@@ -18,7 +33,24 @@ def search_cars(brand: str = None, model: str = None, year: int = None, milage: 
     if price:
         query["price"] = price
 
-    print(query)
+    if year_from or year_to:
+        if year_from == None: year_from = 1900
+        if year_to == None: year_to = datetime.now().year
+
+        query["year"] = {"$gte": year_from, "$lte": year_to}
+
+    if milage_from or milage_to:
+        if milage_from == None: milage_from = 0
+        if milage_to == None: milage_to = 9999999
+
+        query["milage"] = {"$gte": milage_from, "$lte": milage_to}
+
+    if price_from or price_to:
+        if price_from == None: price_from = 0
+        if price_to == None: price_to = 9999999
+
+        query["price"] = {"$gte": price_from, "$lte": price_to}
+
     cars = cars_collection.find(query)
     cars = [car for car in cars]
 
@@ -52,11 +84,21 @@ def get_car(brand: str, model: str):
 
 
 @router.post("/cars")
-def create_car(car: Car):
-    if cars_collection.find_one({"brand": car.brand, "model": car.model}):
-        raise HTTPException(status_code=400, detail="Car already exists")
-    cars_collection.insert_one(car.model_dump(by_alias=True))
-    raise HTTPException(status_code=201, detail="Car created")
+def create_car(cars: list[Car]):
+    cars_added = 0
+    for car in cars:
+        if cars_collection.find_one({"brand": car.brand, "model": car.model}) == None:
+            cars_collection.insert_one(car.model_dump(by_alias=True))
+            cars_added += 1
+    if cars_added == 0:
+        raise HTTPException(status_code=400, detail="Cars already exists")
+    
+    raise HTTPException(status_code=201, detail="Cars created: " + str(cars_added) + "/" + str(len(cars)))
+
+    # if cars_collection.find_one({"brand": car.brand, "model": car.model}):
+    #     raise HTTPException(status_code=400, detail="Car already exists")
+    # cars_collection.insert_one(car.model_dump(by_alias=True))
+    # raise HTTPException(status_code=201, detail="Car created")
 
 
 @router.delete("/cars/{brand}/{model}")

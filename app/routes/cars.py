@@ -95,11 +95,6 @@ def create_car(cars: list[Car]):
     
     raise HTTPException(status_code=201, detail="Cars created: " + str(cars_added) + "/" + str(len(cars)))
 
-    # if cars_collection.find_one({"brand": car.brand, "model": car.model}):
-    #     raise HTTPException(status_code=400, detail="Car already exists")
-    # cars_collection.insert_one(car.model_dump(by_alias=True))
-    # raise HTTPException(status_code=201, detail="Car created")
-
 
 @router.delete("/cars/{brand}/{model}")
 def delete_car(brand: str, model: str):

@@ -4,8 +4,29 @@ from models.car import Car
 
 router = APIRouter()
 
+@router.get("/search", response_model=list[Car])
+def search_cars(brand: str = None, model: str = None, year: int = None, milage: int = None, price: int = None):
+    query = {}
+    if brand:
+        query["brand"] = brand
+    if model:
+        query["model"] = model
+    if year:
+        query["year"] = year
+    if milage:
+        query["milage"] = milage
+    if price:
+        query["price"] = price
+
+    print(query)
+    cars = cars_collection.find(query)
+    cars = [car for car in cars]
+
+    return cars
+
+
 @router.get("/cars",  response_model=list[Car])
-def get_cars():
+def get_all_cars():
     cars = cars_collection.find()
     cars = [car for car in cars]
 
@@ -55,3 +76,4 @@ def update_car(brand: str, model: str, car: Car):
         cars_collection.update_one({"brand": brand, "model": model}, {"$set": car_data})
         raise HTTPException(status_code=200, detail="Car updated")
     raise HTTPException(status_code=404, detail="Car not found")
+

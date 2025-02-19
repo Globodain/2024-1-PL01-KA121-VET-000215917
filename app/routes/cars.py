@@ -32,24 +32,15 @@ def search_cars(
         query["milage"] = milage
     if price:
         query["price"] = price
+    
+    if year_from is not None or year_to is not None:
+        query["year"] = {"$gte": year_from or 1900, "$lte": year_to or datetime.now().year}
 
-    if year_from or year_to:
-        if year_from == None: year_from = 1900
-        if year_to == None: year_to = datetime.now().year
+    if milage_from is not None or milage_to is not None:
+        query["milage"] = {"$gte": milage_from or 0, "$lte": milage_to or 9999999}
 
-        query["year"] = {"$gte": year_from, "$lte": year_to}
-
-    if milage_from or milage_to:
-        if milage_from == None: milage_from = 0
-        if milage_to == None: milage_to = 9999999
-
-        query["milage"] = {"$gte": milage_from, "$lte": milage_to}
-
-    if price_from or price_to:
-        if price_from == None: price_from = 0
-        if price_to == None: price_to = 9999999
-
-        query["price"] = {"$gte": price_from, "$lte": price_to}
+    if price_from is not None or price_to is not None:
+        query["price"] = {"$gte": price_from or 0, "$lte": price_to or 9999999}
 
     cars = cars_collection.find(query)
     cars = [car for car in cars]
@@ -90,9 +81,10 @@ def create_car(cars: list[Car]):
         if cars_collection.find_one({"brand": car.brand, "model": car.model}) == None:
             cars_collection.insert_one(car.model_dump(by_alias=True))
             cars_added += 1
+
     if cars_added == 0:
         raise HTTPException(status_code=400, detail="Cars already exists")
-    
+
     raise HTTPException(status_code=201, detail="Cars created: " + str(cars_added) + "/" + str(len(cars)))
 
 
@@ -108,9 +100,12 @@ def delete_car(brand: str, model: str):
 def update_car(brand: str, model: str, car: Car):
     if cars_collection.find_one({"brand": brand, "model": model}):
         car_data = car.model_dump(by_alias=True)
+
         if "_id" in car_data:
             del car_data["_id"]
+
         cars_collection.update_one({"brand": brand, "model": model}, {"$set": car_data})
         raise HTTPException(status_code=200, detail="Car updated")
+    
     raise HTTPException(status_code=404, detail="Car not found")
 

@@ -107,5 +107,4 @@ def update_car(brand: str, model: str, car: Car):
         cars_collection.update_one({"brand": brand, "model": model}, {"$set": car_data})
         raise HTTPException(status_code=200, detail="Car updated")
     
-    raise HTTPException(status_code=404, detail="Car not found")
-
+    raise HTTPException(status_code=404, detail="Car not found") 

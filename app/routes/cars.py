@@ -6,7 +6,6 @@ from models.car import Car
 
 router = APIRouter()
 
-
 @router.get("/cars",  response_model=list[Car], name="Get all cars")
 def get_all_cars():
     cars = cars_collection.find()

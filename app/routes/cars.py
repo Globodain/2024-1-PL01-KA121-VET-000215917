@@ -6,49 +6,8 @@ from models.car import Car
 
 router = APIRouter()
 
-@router.get("/search", response_model=list[Car])
-def search_cars(
-    brand: str = None,
-    model: str = None,
-    year: int = None,
-    milage: int = None,
-    price: int = None, 
-    year_from: int = None, 
-    year_to: int = None, 
-    milage_from: int = None,
-    milage_to: int = None, 
-    price_from: int = None, 
-    price_to: int = None):
 
-    query = {}
-
-    if brand:
-        query["brand"] = brand
-    if model:
-        query["model"] = model
-    if year:
-        query["year"] = year
-    if milage:
-        query["milage"] = milage
-    if price:
-        query["price"] = price
-    
-    if year_from is not None or year_to is not None:
-        query["year"] = {"$gte": year_from or 1900, "$lte": year_to or datetime.now().year}
-
-    if milage_from is not None or milage_to is not None:
-        query["milage"] = {"$gte": milage_from or 0, "$lte": milage_to or 9999999}
-
-    if price_from is not None or price_to is not None:
-        query["price"] = {"$gte": price_from or 0, "$lte": price_to or 9999999}
-
-    cars = cars_collection.find(query)
-    cars = [car for car in cars]
-
-    return cars
-
-
-@router.get("/cars",  response_model=list[Car])
+@router.get("/cars",  response_model=list[Car], description="Get all cars")
 def get_all_cars():
     cars = cars_collection.find()
     cars = [car for car in cars]
@@ -56,7 +15,7 @@ def get_all_cars():
     return cars
 
 
-@router.get("/cars/{brand}", response_model=list[Car])
+@router.get("/cars/{brand}", response_model=list[Car], description="Get cars by brand")
 def get_cars_by_brand(brand: str):
     cars = cars_collection.find({"brand": brand})
     cars = [car for car in cars]
@@ -66,7 +25,7 @@ def get_cars_by_brand(brand: str):
     raise HTTPException(status_code=404, detail="Car not found")
 
 
-@router.get("/cars/{brand}/{model}", response_model=Car)
+@router.get("/cars/{brand}/{model}", response_model=Car, description="Get car by brand and model")
 def get_car(brand: str, model: str):
     car = cars_collection.find_one({"brand": brand, "model": model})
     if car:
@@ -74,7 +33,7 @@ def get_car(brand: str, model: str):
     raise HTTPException(status_code=404, detail="Car not found")
 
 
-@router.post("/cars")
+@router.post("/cars", description="Create cars")
 def create_car(cars: list[Car]):
     cars_added = 0
     for car in cars:
@@ -88,7 +47,7 @@ def create_car(cars: list[Car]):
     raise HTTPException(status_code=201, detail="Cars created: " + str(cars_added) + "/" + str(len(cars)))
 
 
-@router.delete("/cars/{brand}/{model}")
+@router.delete("/cars/{brand}/{model}", description="Delete car by brand and model")
 def delete_car(brand: str, model: str):
     if cars_collection.find_one({"brand": brand, "model": model}):
         cars_collection.delete_one({"brand": brand, "model": model})
@@ -96,7 +55,7 @@ def delete_car(brand: str, model: str):
     raise HTTPException(status_code=404, detail="Car not found")
 
 
-@router.put("/cars/{brand}/{model}")
+@router.put("/cars/{brand}/{model}", description="Update car by brand and model")
 def update_car(brand: str, model: str, car: Car):
     if cars_collection.find_one({"brand": brand, "model": model}):
         car_data = car.model_dump(by_alias=True)

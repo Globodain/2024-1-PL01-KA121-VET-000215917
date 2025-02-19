@@ -6,7 +6,7 @@ from models.car import Car
 
 router = APIRouter()
 
-@router.get("/search", response_model=list[Car], description="Search for cars with specific parameters")
+@router.get("/search", response_model=list[Car], name="Search for cars with specific parameters")
 def search_cars(
     brand: str = None,
     model: str = None,
@@ -22,16 +22,9 @@ def search_cars(
 
     query = {}
 
-    if brand:
-        query["brand"] = brand
-    if model:
-        query["model"] = model
-    if year:
-        query["year"] = year
-    if milage:
-        query["milage"] = milage
-    if price:
-        query["price"] = price
+    for field, value in [("brand", brand), ("model", model), ("year", year), ("milage", milage), ("price", price)]:
+      if value is not None:
+        query[field] = value
     
     if year_from is not None or year_to is not None:
         query["year"] = {"$gte": year_from or 1900, "$lte": year_to or datetime.now().year}

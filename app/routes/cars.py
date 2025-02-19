@@ -7,7 +7,7 @@ from models.car import Car
 router = APIRouter()
 
 
-@router.get("/cars",  response_model=list[Car], description="Get all cars")
+@router.get("/cars",  response_model=list[Car], name="Get all cars")
 def get_all_cars():
     cars = cars_collection.find()
     cars = [car for car in cars]
@@ -15,7 +15,7 @@ def get_all_cars():
     return cars
 
 
-@router.get("/cars/{brand}", response_model=list[Car], description="Get cars by brand")
+@router.get("/cars/{brand}", response_model=list[Car], name="Get cars by brand")
 def get_cars_by_brand(brand: str):
     cars = cars_collection.find({"brand": brand})
     cars = [car for car in cars]
@@ -25,7 +25,7 @@ def get_cars_by_brand(brand: str):
     raise HTTPException(status_code=404, detail="Car not found")
 
 
-@router.get("/cars/{brand}/{model}", response_model=Car, description="Get car by brand and model")
+@router.get("/cars/{brand}/{model}", response_model=Car, name="Get car by brand and model")
 def get_car(brand: str, model: str):
     car = cars_collection.find_one({"brand": brand, "model": model})
     if car:
@@ -33,7 +33,7 @@ def get_car(brand: str, model: str):
     raise HTTPException(status_code=404, detail="Car not found")
 
 
-@router.post("/cars", description="Create cars")
+@router.post("/cars", name="Create cars")
 def create_car(cars: list[Car]):
     cars_added = 0
     for car in cars:
@@ -47,7 +47,7 @@ def create_car(cars: list[Car]):
     raise HTTPException(status_code=201, detail="Cars created: " + str(cars_added) + "/" + str(len(cars)))
 
 
-@router.delete("/cars/{brand}/{model}", description="Delete car by brand and model")
+@router.delete("/cars/{brand}/{model}", name="Delete car by brand and model")
 def delete_car(brand: str, model: str):
     if cars_collection.find_one({"brand": brand, "model": model}):
         cars_collection.delete_one({"brand": brand, "model": model})
@@ -55,7 +55,7 @@ def delete_car(brand: str, model: str):
     raise HTTPException(status_code=404, detail="Car not found")
 
 
-@router.put("/cars/{brand}/{model}", description="Update car by brand and model")
+@router.put("/cars/{brand}/{model}", name="Update car by brand and model")
 def update_car(brand: str, model: str, car: Car):
     if cars_collection.find_one({"brand": brand, "model": model}):
         car_data = car.model_dump(by_alias=True)

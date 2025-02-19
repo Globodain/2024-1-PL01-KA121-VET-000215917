@@ -1,8 +1,8 @@
-from pydantic import BaseModel, Field
-from bson.objectid import ObjectId
 from typing import Annotated
-from models.model import _ObjectIdPydanticAnnotation
 
+from bson.objectid import ObjectId
+from models.model import _ObjectIdPydanticAnnotation
+from pydantic import BaseModel, Field
 
 PydanticObjectId = Annotated[
     ObjectId, _ObjectIdPydanticAnnotation
@@ -14,7 +14,7 @@ class Car(BaseModel):
     model: str = Field(..., min_length=1)
     year: int = Field(..., ge=1900)
     milage: int = Field(..., ge=0)
-    avg_price: int = Field(..., ge=0)
+    price: int = Field(..., ge=0)
     gears: int = Field(..., ge=1)
     seats: int = Field(..., ge=1)
     doors: int = Field(..., ge=1)

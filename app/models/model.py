@@ -1,6 +1,7 @@
-from bson.objectid import ObjectId
 from typing import Any, Callable
+
 from bson import ObjectId
+from bson.objectid import ObjectId
 from pydantic_core import core_schema
 
 

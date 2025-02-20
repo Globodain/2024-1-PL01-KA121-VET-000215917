@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, Literal, Optional
 
 from bson.objectid import ObjectId
 from models.model import _ObjectIdPydanticAnnotation
@@ -9,9 +9,10 @@ PydanticObjectId = Annotated[
 ]
 
 class Car(BaseModel):
-    id:  PydanticObjectId = Field(default_factory=PydanticObjectId, alias="_id", )
+    id:  PydanticObjectId = Field(default_factory=PydanticObjectId, alias='_id', )
     brand: str = Field(..., min_length=1)
     model: str = Field(..., min_length=1)
+    vin: str = Field(..., min_length=1, max_length=17)
     year: int = Field(..., ge=1900)
     milage: int = Field(..., ge=0)
     price: int = Field(..., ge=0)
@@ -25,8 +26,8 @@ class Car(BaseModel):
     horse_power: int = Field(..., ge=0)
     displacement: float = Field(..., ge=0)
     cylinders: int = Field(..., ge=0)
-    fuel_type: str = Field(..., min_length=3)
-    transmission: str = Field(..., min_length=3)
+    fuel_type: Literal['gasoline', 'diesel', 'hybrid', 'electric', 'hydrogen', 'ethanol', 'biodiesel', 'natural gas'] = Field(...)
+    transmission: Literal['manual', 'automatic', 'semi-automatic', 'CVT'] = Field(...)
 
     fuel_consumption_city: float = Field(..., ge=0)
     fuel_consumption_highway: float = Field(..., ge=0)

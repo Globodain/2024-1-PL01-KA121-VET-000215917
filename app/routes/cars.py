@@ -7,9 +7,9 @@ from models.car import Car
 router = APIRouter()
 
 @router.get('/cars', response_model=list[Car], name='Get all cars')
-def get_all_cars():
+def get_all_cars(limit: int = 0):
     try:
-        cars = cars_collection.find()
+        cars = cars_collection.find().limit(limit) if limit > 0 else cars_collection.find()
         cars = [car for car in cars]
         return cars
     except Exception as e:

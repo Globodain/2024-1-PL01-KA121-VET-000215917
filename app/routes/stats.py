@@ -15,7 +15,6 @@ def get_all_cars_stats():
         ]
         most_common_brand = list(cars_collection.aggregate(pipeline))
         most_common_brand = most_common_brand[0] if most_common_brand else None
-        most_common_brand_count = most_common_brand["count"] if most_common_brand else 0
 
         fastest_car = cars_collection.find_one(sort=[("max_speed", -1)])
         most_expensive_car = cars_collection.find_one(sort=[("price", -1)])
@@ -55,8 +54,6 @@ def get_all_cars_stats():
         most_common_transmission = list(cars_collection.aggregate([{"$group": {"_id": "$transmission", "count": {"$sum": 1}}}, {"$sort": {"count": -1}}, {"$limit": 1}]))
         most_common_transmission = most_common_transmission[0] if most_common_transmission else None
 
-        
-
         def serialize_car(car):
             if car:
                 car["_id"] = str(car["_id"])
@@ -64,7 +61,6 @@ def get_all_cars_stats():
 
         return {
             "most_common_brand": most_common_brand,
-            "most_common_brand_count": most_common_brand_count,
             "fastest_car": serialize_car(fastest_car),
             "most_expensive_car": serialize_car(most_expensive_car),
             "most_efficient_car": serialize_car(most_efficient_car),
@@ -88,8 +84,5 @@ def get_all_cars_stats():
             "most_common_transmission": most_common_transmission
         }
 
-
-    
-    
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

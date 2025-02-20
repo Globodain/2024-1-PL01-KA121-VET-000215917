@@ -8,7 +8,6 @@ This project is a FastAPI-based web service designed to manage car-related data 
 - [Setup](#setup)
 - [Endpoints](#api-endpoints)
 - [Car Model](#car-model)
-- [Database](#database)
 
 ## Technologies
 

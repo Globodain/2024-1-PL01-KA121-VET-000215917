@@ -36,6 +36,7 @@ def search_cars(
   model: Optional[str] = None,
   year: Optional[int] = None,
   milage: Optional[int] = None,
+  vin: Optional[str] = None,
   price: Optional[int] = None, 
   year_from: Optional[int] = None, 
   year_to: Optional[int] = None, 
@@ -68,7 +69,7 @@ def search_cars(
   try:
     query = {}
 
-    for field, value in [('brand', brand), ('model', model), ('year', year), ('milage', milage), ('price', price)]:
+    for field, value in [('brand', brand), ('model', model), ('year', year), ('milage', milage), ('price', price), ('vin', vin)]:
       if value is not None:
         query[field] = value
     

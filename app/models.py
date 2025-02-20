@@ -9,6 +9,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 from app import app, db, login
 from flask import url_for
+from datetime import timedelta
+import secrets
 
 
 followers = sa.Table(
@@ -183,6 +185,14 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
     def revoke_token(self):
         self.token_expiration = datetime.now(timezone.utc) - timedelta(
             seconds=1)
+        
+    @staticmethod
+    def check_token(token):
+        user = db.session.scalar(sa.select(User).where(User.token == token))
+        if user is None or user.token_expiration.replace(
+                tzinfo=timezone.utc) < datetime.now(timezone.utc):
+            return None
+        return user
 
 @login.user_loader
 def load_user(id):

@@ -5,7 +5,7 @@ from fastapi import APIRouter, HTTPException
 
 router = APIRouter()
 
-@router.get('/stats',name='Get cars statistics')
+@router.get('/cars/stats',name='Get cars statistics')
 def get_all_cars_stats():
     try:
         pipeline = [

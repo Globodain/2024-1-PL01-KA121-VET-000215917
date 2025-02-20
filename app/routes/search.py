@@ -30,8 +30,9 @@ order_mapping = {
       'range_combined_desc': ('range_combined', -1),
 }
 
-@router.get('/search', response_model=list[Car], name='Advanced search for cars with specific parameters')
+@router.get('/cars/search', response_model=list[Car], name='Advanced search for cars with specific parameters')
 def search_cars(
+  limit: int = 0,
   brand: Optional[str] = None,
   model: Optional[str] = None,
   year: Optional[int] = None,
@@ -87,7 +88,7 @@ def search_cars(
     if sort_by:
       sort_criteria = [order_mapping[sort_by]]
 
-    cars = cars_collection.find(query).sort(sort_criteria) if sort_criteria else cars_collection.find(query)
+    cars = cars_collection.find(query).sort(sort_criteria).limit(limit) if sort_criteria else cars_collection.find(query).limit(limit)
     cars = [car for car in cars]
 
     return cars

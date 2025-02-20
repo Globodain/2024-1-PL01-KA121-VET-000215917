@@ -5,6 +5,6 @@ from routes.stats import router as stats_router
 
 app = FastAPI(title='Car API')
 
-app.include_router(cars_router)
 app.include_router(search_router)
 app.include_router(stats_router)
+app.include_router(cars_router)

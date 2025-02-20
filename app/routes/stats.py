@@ -1,5 +1,3 @@
-import math
-
 from db import cars_collection
 from fastapi import APIRouter, HTTPException
 

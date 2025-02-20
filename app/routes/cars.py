@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from db import cars_collection
 from fastapi import APIRouter, HTTPException
 from models.car import Car

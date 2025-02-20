@@ -1,4 +1,4 @@
-from typing import Annotated, Literal, Optional
+from typing import Annotated, Literal
 
 from bson.objectid import ObjectId
 from models.model import _ObjectIdPydanticAnnotation

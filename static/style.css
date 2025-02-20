@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0069d9;
+    padding: 20px 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+    border-radius: 20px;
+    margin: 20px 40px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    margin: 0 20px;
+    font-size: 1.1em;
+    font-weight: bolder;
+    text-transform: uppercase;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+    letter-spacing: 1px;
+}
+
+.navbar a:hover {
+    background: linear-gradient(45deg, #00aaff, #0069d9);
+    color: white;
+    transform: translateY(-4px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a.active {
+    background-color: #0056b3;
+    text-decoration: underline;
+    font-weight: bold;
+    transform: translateY(-2px);
+}
+
+.container {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #4f5d73;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.animal-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+    transform: scale(1);
+    border: 1px solid #e0e0e0;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: #555;
+    font-size: 1.1em;
+}
+
+.card a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    transform: translateY(0);
+}
+
+.card a:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+p {
+    text-align: center;
+    margin-top: 30px;
+}
+
+p a {
+    color: #28a745;
+    font-size: 1.2em;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+#filterPanel {
+    position: fixed;
+    left: -300px;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: #ffffff;
+    padding: 20px;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+    transition: left 0.4s ease-in-out, box-shadow 0.3s ease, background-color 0.3s ease;
+    border-radius: 10px 0 0 10px;
+    z-index: 1000;
+}
+
+#filterPanel.hidden {
+    left: -300px; /* Keep hidden when class is applied */
+}
+
+#filterPanel:not(.hidden) {
+    left: 0; /* Slide in when class is removed */
+}
+
+#filterPanel h3 {
+    font-size: 1.6em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#filterPanel input {
+    width: 100%;
+    padding: 8px;
+    font-size: 1em;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+}
+
+#filterPanel button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1.1em;
+    width: 100%;
+}
+
+#filterPanel button:hover {
+    background-color: #0056b3;
+}

@@ -92,10 +92,3 @@ curl -X 'POST' 'http://127.0.0.1:5000/index' \
   "message": "Your post is now live!"
 }
 ```
-
-## Contributing
-Feel free to fork the repository, submit issues, or create pull requests to improve the project!
-
-## License
-This project is licensed under the MIT License.
-

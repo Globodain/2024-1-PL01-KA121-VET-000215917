@@ -32,8 +32,7 @@ Ensure you have Python 3.8+ installed on your machine.
 1. **Clone the repository:**
 
    ```sh
-   git clone https://github.com/your-repo/fastapi-animal-api.git
-   cd fastapi-animal-api
+   git clone https://github.com/Globodain/2024-1-PL01-KA121-VET-000215917.git
    ```
 
 2. **Create and activate a virtual environment:**
@@ -43,21 +42,15 @@ Ensure you have Python 3.8+ installed on your machine.
    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
    ```
 
-3. **Install dependencies:**
+3. **Set up MongoDB:** Ensure MongoDB is running locally or use a remote MongoDB instance. Update the database connection settings accordingly in `database.py`.
 
-   ```sh
-   pip install -r requirements.txt
-   ```
-
-4. **Set up MongoDB:** Ensure MongoDB is running locally or use a remote MongoDB instance. Update the database connection settings accordingly in `database.py`.
-
-5. **Run the FastAPI application:**
+4. **Run the FastAPI application:**
 
    ```sh
    uvicorn main:app --reload
    ```
 
-6. **Access API documentation:** Open your browser and navigate to:
+5. **Access API documentation:** Open your browser and navigate to:
 
    - Swagger UI: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
    - ReDoc UI: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)

@@ -18,10 +18,10 @@ Microblog is a web application built using Flask that allows users to create acc
 
 ## Screenshots
 
-![Screenshot 1](https://raw.githubusercontent.com/Globodain/2024-1-PL01-KA121-VET-000215917/refs/heads/krzysztof-padlo-flask/screenshots/01.png)
+![Screenshot 1](https://raw.githubusercontent.com/Globodain/2024-1-PL01-KA121-VET-000215917/refs/heads/krzysztof_padlo_flask/screenshots/01.png)
 
-![Screenshot 2](https://raw.githubusercontent.com/Globodain/2024-1-PL01-KA121-VET-000215917/refs/heads/krzysztof-padlo-flask/screenshots/02.png)
+![Screenshot 2](https://raw.githubusercontent.com/Globodain/2024-1-PL01-KA121-VET-000215917/refs/heads/krzysztof_padlo_flask/screenshots/02.png)
 
-![Screenshot 3](https://raw.githubusercontent.com/Globodain/2024-1-PL01-KA121-VET-000215917/refs/heads/krzysztof-padlo-flask/screenshots/03.png)
+![Screenshot 3](https://raw.githubusercontent.com/Globodain/2024-1-PL01-KA121-VET-000215917/refs/heads/krzysztof_padlo_flask/screenshots/03.png)
 
-![Screenshot 4](https://raw.githubusercontent.com/Globodain/2024-1-PL01-KA121-VET-000215917/refs/heads/krzysztof-padlo-flask/screenshots/04.png)
+![Screenshot 4](https://raw.githubusercontent.com/Globodain/2024-1-PL01-KA121-VET-000215917/refs/heads/krzysztof_padlo_flask/screenshots/04.png)

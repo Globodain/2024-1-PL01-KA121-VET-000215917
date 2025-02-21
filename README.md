@@ -75,7 +75,3 @@ This is a microblogging web application built with Flask. Users can register, lo
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License.

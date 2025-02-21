@@ -58,5 +58,4 @@ This is a microblogging web application built using Flask, where users can sign 
   - `password2`: PasswordField (required, must match the first password)
   - `submit`: SubmitField
 
-### License
-This project is licensed under the MIT License.
+

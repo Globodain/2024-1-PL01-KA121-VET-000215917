@@ -133,6 +133,6 @@ The Car model contains the following fields:
 
 ![Screenshot 1](https://raw.githubusercontent.com/Globodain/2024-1-PL01-KA121-VET-000215917/refs/heads/krzysztof_padlo_fastapi/screenshots/01.png)
 
-![Screenshot 1](https://raw.githubusercontent.com/Globodain/2024-1-PL01-KA121-VET-000215917/refs/heads/krzysztof_padlo_astapi/screenshots/02.png)
+![Screenshot 2](https://raw.githubusercontent.com/Globodain/2024-1-PL01-KA121-VET-000215917/refs/heads/krzysztof_padlo_fastapi/screenshots/02.png)
 
-![Screenshot 1](https://raw.githubusercontent.com/Globodain/2024-1-PL01-KA121-VET-000215917/refs/heads/krzysztof_padlo_fastapi/screenshots/03.png)
+![Screenshot 3](https://raw.githubusercontent.com/Globodain/2024-1-PL01-KA121-VET-000215917/refs/heads/krzysztof_padlo_fastapi/screenshots/03.png)

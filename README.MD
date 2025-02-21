@@ -7,6 +7,7 @@ This project is a FastAPI-based web service designed to manage car-related data 
 - [Technologies](#technologies)
 - [Endpoints](#api-endpoints)
 - [Car Model](#car-model)
+- [Screenshots](#screenshots)
 
 ## Technologies
 
@@ -126,3 +127,12 @@ The Car model contains the following fields:
 | `range_city`                | `float`   | Range on the city roads (km).                                          |
 | `range_highway`             | `float`   | Range on the highway (km).                                             |
 | `range_combined`            | `float`   | Combined range (km).                                                   |
+
+
+### Screenshots
+
+![Screenshot 1](https://raw.githubusercontent.com/Globodain/2024-1-PL01-KA121-VET-000215917/refs/heads/krzysztof-padlo-fastapi/screenshots/01.png)
+
+![Screenshot 1](https://raw.githubusercontent.com/Globodain/2024-1-PL01-KA121-VET-000215917/refs/heads/krzysztof-padlo-fastapi/screenshots/02.png)
+
+![Screenshot 1](https://raw.githubusercontent.com/Globodain/2024-1-PL01-KA121-VET-000215917/refs/heads/krzysztof-padlo-fastapi/screenshots/03.png)

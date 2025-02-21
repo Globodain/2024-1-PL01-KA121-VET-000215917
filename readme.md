@@ -25,8 +25,6 @@ This web application, built with FastAPI, allows users to view, manage, and upda
 - **templates/** – Stores HTML templates for the front-end pages
 - **static/** – Stores static assets like images for animals
 
-### Contribution
-Feel free to fork and contribute! You can open an issue or submit a pull request for improvements.
 
-### License
-This project is licensed under the MIT License. 
+
+

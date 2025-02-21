@@ -106,12 +106,3 @@ curl -X 'POST' 'http://127.0.0.1:8000/animals/' \
   "age": 5
 }
 ```
-
-## Contributing
-
-Feel free to open issues and submit pull requests to improve the project!
-
-## License
-
-This project is licensed under the MIT License.
-

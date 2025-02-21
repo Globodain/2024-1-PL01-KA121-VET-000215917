@@ -1,34 +1,35 @@
-from logging.handlers import RotatingFileHandler, SMTPHandler
+import logging
+from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
-from flask import Flask, logging
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_mail import Mail
-from flask_moment import Moment
-from flask_babel import Babel
 from config import Config
-from app.api import bp as api_bp
 
-db = SQLAlchemy()
-migrate = Migrate()
-login = LoginManager()
-mail = Mail()
-moment = Moment()
+
+app = Flask(__name__)
+app.config.from_object(Config)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+login = LoginManager(app)
+login.login_view = 'login'
+mail = Mail(app)
 
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
-
+    
     db.init_app(app)
     migrate.init_app(app, db)
     login.init_app(app)
     mail.init_app(app)
-    moment.init_app(app)
-    
+
+    from app.api import bp as api_bp
     app.register_blueprint(api_bp, url_prefix='/api')
 
-    if not app.debug and not app.testing:
+    if not app.debug:
         if app.config['MAIL_SERVER']:
             auth = None
             if app.config['MAIL_USERNAME'] or app.config['MAIL_PASSWORD']:
@@ -56,4 +57,7 @@ def create_app(config_class=Config):
         app.logger.setLevel(logging.INFO)
         app.logger.info('Microblog startup')
 
+    from app import routes, models, errors
+
     return app
+

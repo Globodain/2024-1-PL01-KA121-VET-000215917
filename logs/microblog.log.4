@@ -1,125 +1,77 @@
-2025-02-14 10:23:15,272 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:42]
-2025-02-14 10:24:32,336 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:42]
-2025-02-14 10:47:25,703 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:45]
-2025-02-14 10:48:45,694 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:45]
-2025-02-14 10:49:04,727 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:45]
-2025-02-14 11:22:51,449 INFO: Microblog startup [in C:\Users\Student2\Desktop\microblog\app\__init__.py:45]
-2025-02-14 11:23:55,968 ERROR: Exception on /index [GET] [in C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\flask\app.py:1414]
+2025-02-14 12:45:03,720 ERROR: Exception on /index [GET] [in c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\flask\app.py:1745]
 Traceback (most recent call last):
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
-    self.dialect.do_execute(
-    ~~~~~~~~~~~~~~~~~~~~~~~^
-        cursor, str_statement, effective_parameters, context
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 942, in do_execute
-    cursor.execute(statement, parameters)
-    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-sqlite3.OperationalError: no such table: followers
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\flask\app.py", line 2529, in wsgi_app
     response = self.full_dispatch_request()
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\flask\app.py", line 1825, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
-  File "C:\Users\Student2\Desktop\microblog\app\routes.py", line 25, in index
-    posts = db.paginate(current_user.following_posts(), page=page,
-                        per_page=app.config['POSTS_PER_PAGE'], error_out=False)
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\flask_sqlalchemy\extension.py", line 839, in paginate
-    return SelectPagination(
-        select=select,
-    ...<5 lines>...
-        count=count,
-    )
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\flask_sqlalchemy\pagination.py", line 72, in __init__
-    items = self._query_items()
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\flask_sqlalchemy\pagination.py", line 339, in _query_items
-    return list(session.execute(select).unique().scalars())
-                ~~~~~~~~~~~~~~~^^^^^^^^
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
-    return self._execute_internal(
-           ~~~~~~~~~~~~~~~~~~~~~~^
-        statement,
-        ^^^^^^^^^^
-    ...<4 lines>...
-        _add_event=_add_event,
-        ^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
-    result: Result[Any] = compile_state_cls.orm_execute_statement(
-                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-        self,
-        ^^^^^
-    ...<4 lines>...
-        conn,
-        ^^^^^
-    )
-    ^
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
-    result = conn.execute(
-        statement, params or {}, execution_options=execution_options
-    )
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
-    return meth(
-        self,
-        distilled_parameters,
-        execution_options or NO_OPTIONS,
-    )
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
-    return connection._execute_clauseelement(
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-        self, distilled_params, execution_options
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1638, in _execute_clauseelement
-    ret = self._execute_context(
-        dialect,
-    ...<8 lines>...
-        cache_hit=cache_hit,
-    )
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1843, in _execute_context
-    return self._exec_single_context(
-           ~~~~~~~~~~~~~~~~~~~~~~~~~^
-        dialect, context, statement, parameters
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1983, in _exec_single_context
-    self._handle_dbapi_exception(
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-        e, str_statement, effective_parameters, cursor, context
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2352, in _handle_dbapi_exception
-    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
-    self.dialect.do_execute(
-    ~~~~~~~~~~~~~~~~~~~~~~~^
-        cursor, str_statement, effective_parameters, context
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "C:\Users\Student2\Desktop\microblog\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 942, in do_execute
-    cursor.execute(statement, parameters)
-    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: followers
-[SQL: SELECT post.id, post.body, post.timestamp, post.user_id 
-FROM post JOIN user AS user_1 ON user_1.id = post.user_id LEFT OUTER JOIN (followers AS followers_1 JOIN user AS user_2 ON followers_1.follower_id = user_2.id) ON followers_1.followed_id = user_1.id 
-WHERE user_2.id = ? OR user_1.id = ? GROUP BY post.id, post.body, post.timestamp, post.user_id ORDER BY post.timestamp DESC
- LIMIT ? OFFSET ?]
-[parameters: (3, 3, 25, 0)]
-(Background on this error at: https://sqlalche.me/e/20/e3q8)
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\flask\app.py", line 1821, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\flask\app.py", line 2313, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+  File "C:\Users\Student.LAPTOP-75\Desktop\jakies cos\microblog\app\routes.py", line 13, in before_request
+    if current_user.is_authenticated:
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\werkzeug\local.py", line 316, in __get__
+    obj = instance._get_current_object()
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\werkzeug\local.py", line 520, in _get_current_object
+    return get_name(local())  # type: ignore
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\flask_login\utils.py", line 25, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\flask_login\utils.py", line 370, in _get_user
+    current_app.login_manager._load_user()
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\flask_login\login_manager.py", line 364, in _load_user
+    user = self._user_callback(user_id)
+  File "C:\Users\Student.LAPTOP-75\Desktop\jakies cos\microblog\app\models.py", line 78, in load_user
+    return db.session.get(User, int(id))
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\orm\scoping.py", line 1066, in get
+    bind_arguments=bind_arguments,
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\orm\session.py", line 3703, in get
+    bind_arguments=bind_arguments,
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\orm\session.py", line 3881, in _get_impl
+    bind_arguments=bind_arguments,
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\orm\loading.py", line 698, in load_on_pk_identity
+    bind_arguments=bind_arguments,
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\orm\session.py", line 2371, in execute
+    _add_event=_add_event,
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\orm\session.py", line 2257, in _execute_internal
+    conn,
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    statement, params or {}, execution_options=execution_options
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    execution_options or NO_OPTIONS,
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 517, in _execute_on_connection
+    self, distilled_params, execution_options
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1636, in _execute_clauseelement
+    linting=self.dialect.compiler_linting | compiler.WARN_LINTING,
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 710, in _compile_w_cache
+    **kw,
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 317, in _compiler
+    return dialect.statement_compiler(dialect, self, **kw)
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\sql\compiler.py", line 1429, in __init__
+    Compiled.__init__(self, dialect, statement, **kwargs)
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\sql\compiler.py", line 870, in __init__
+    self.string = self.process(self.statement, **compile_kwargs)
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\sql\compiler.py", line 915, in process
+    return obj._compiler_dispatch(self, **kwargs)
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\sql\visitors.py", line 141, in _compiler_dispatch
+    return meth(self, **kw)  # type: ignore  # noqa: E501
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\sql\compiler.py", line 4681, in visit_select
+    select_stmt, self, **kwargs
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\sql\base.py", line 683, in create_for_statement
+    return klass.create_for_statement(statement, compiler, **kw)
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\orm\context.py", line 1114, in create_for_statement
+    is_current_entities=True,
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\orm\context.py", line 2569, in to_compile_state
+    is_current_entities,
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\orm\context.py", line 2645, in __init__
+    entity._post_inspect
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\util\langhelpers.py", line 1257, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\orm\mapper.py", line 2724, in _post_inspect
+    self._check_configure()
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\orm\mapper.py", line 2401, in _check_configure
+    _configure_registries({self.registry}, cascade=True)
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\orm\mapper.py", line 4213, in _configure_registries
+    _do_configure_registries(registries, cascade)
+  File "c:\users\student.laptop-75\desktop\jakies cos\microblog\venv\lib\site-packages\sqlalchemy\orm\mapper.py", line 4250, in _do_configure_registries
+    raise e
+sqlalchemy.exc.InvalidRequestError: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[User(user)]'. Original exception was: On relationship User.following, 'dynamic' loaders cannot be used with many-to-one/one-to-one relationships and/or uselist=False.
